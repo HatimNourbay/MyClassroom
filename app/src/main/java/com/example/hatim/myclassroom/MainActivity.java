@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             getResults(getConnection(),"dc=isep.fr","(uid=hnourbay)");
+            getResults(getConnection(),"dc=isep.fr","(uid=hnourbay)");
+
+
         } catch (LDAPException e) {
             e.printStackTrace();
         }
