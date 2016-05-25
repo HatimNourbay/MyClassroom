@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">MyClassroom</string>
+
+    <string name="friends_title">Mes Amis</string>
+    <string name="parameters_title">Paramètres</string>
+    <string name="about_title">A Propos</string>
+    <string name="logout_title">Se déconnecter</string>
+
+
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>@string/friends_title</item>
+        <item>@string/parameters_title</item>
+        <item>@string/about_title</item>
+        <item>@string/logout_title</item>
+    </string-array>
+
+
+    <string name="permNom">Nom</string>
+    <string name="permPrenom">Prénom</string>
+    <string name="permSociete">Ecole</string>
+    <string name="permTelephone">Numéro de Téléphone</string>
+    <string name="permDepartement">Département</string>
+    <string name="permMail">Mail</string>
+    <string name="permMdp">Mot de Passe</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -1,49 +1,104 @@
 package com.example.hatim.myclassroom;
 
+import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
-import com.unboundid.ldap.sdk.LDAPConnection;
-import com.unboundid.ldap.sdk.LDAPException;
-import com.unboundid.ldap.sdk.LDAPSearchException;
-import com.unboundid.ldap.sdk.SearchResult;
-import com.unboundid.ldap.sdk.SearchResultEntry;
-import com.unboundid.ldap.sdk.SearchScope;
+import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
+import com.example.hatim.myclassroom.Log.LoginActivity;
+import com.example.hatim.myclassroom.Tab.DocumentsFragment;
+import com.example.hatim.myclassroom.Tab.FriendsFragment;
+import com.example.hatim.myclassroom.Tab.ViewPagerAdapter;
+import com.example.hatim.myclassroom.Tab.WelcomeFragment;
 
-import java.util.List;
+public class MainActivity extends AppCompatActivity implements FragmentInsideDrawer.FragmentDrawerListener {
 
-public class MainActivity extends AppCompatActivity {
+
+    FragmentInsideDrawer fragmentInsideDrawer;
+    Fragment currentFragment;
+
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    private int[] tabIcons = {
+            R.drawable.home,
+            R.drawable.friendssmall,
+            R.drawable.studysmall,
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            getResults(getConnection(),"dc=isep.fr","(uid=hnourbay)");
-            getResults(getConnection(),"dc=isep.fr","(uid=hnourbay)");
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
-        } catch (LDAPException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static List<SearchResultEntry> getResults(LDAPConnection connection, String baseDN, String filter) throws LDAPSearchException {
-        SearchResult searchResult;
-
-        if (connection.isConnected()) {
-            searchResult = connection.search(baseDN, SearchScope.ONE, filter);
-
-            return searchResult.getSearchEntries();
-
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        if (tabLayout != null) {
+            tabLayout.setupWithViewPager(viewPager);
         }
 
-        return null;
+        setupTabIcons();
+
+        currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_container);
+
+        fragmentInsideDrawer = (FragmentInsideDrawer)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        fragmentInsideDrawer.setUp(R.id.fragment_navigation_drawer,(DrawerLayout)findViewById(R.id.drawer_layout),null);
+        fragmentInsideDrawer.setDrawerListener(this);
     }
 
-    public static LDAPConnection getConnection() throws LDAPException {
-        // host, port, username and password
-        return new LDAPConnection("ldap.isep.fr", 389, "uid=hnourbay, ou=People, dc=isep.fr", "my_password");
+    @Override
+    public void onDrawerItemSelected(View view, int position) {
+        displayView(0);
     }
+
+        private void displayView(int position) {
+            Intent intent = null;
+            switch (position) {
+                case 0:
+                    intent = new Intent(this, LoginActivity.class);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+            startActivity(intent);
+
+        }
+
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new WelcomeFragment(), "Welcome");
+        Fragment friendsFragment = new FriendsFragment();
+        Bundle b = new Bundle();
+        //b.putString("name", String name);
+        friendsFragment.setArguments(b);
+        adapter.addFragment(new FriendsFragment(), "MyFriends");
+        adapter.addFragment(new DocumentsFragment(), "MyDocuments");
+        viewPager.setAdapter(adapter);
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+
 }
