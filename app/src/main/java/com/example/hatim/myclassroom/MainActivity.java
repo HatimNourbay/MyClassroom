@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.hatim.myclassroom.Contacts.FragmentContRecycler;
 import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
 import com.example.hatim.myclassroom.Log.LoginActivity;
 import com.example.hatim.myclassroom.Tab.DocumentsFragment;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
         fragmentInsideDrawer = (FragmentInsideDrawer)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         fragmentInsideDrawer.setUp(R.id.fragment_navigation_drawer,(DrawerLayout)findViewById(R.id.drawer_layout),null);
         fragmentInsideDrawer.setDrawerListener(this);
+
     }
 
     @Override
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
                     intent = new Intent(this, LoginActivity.class);
                     break;
                 case 1:
+                   intent = new Intent(this, FragmentContRecycler.class);
                     break;
                 case 2:
                     break;
