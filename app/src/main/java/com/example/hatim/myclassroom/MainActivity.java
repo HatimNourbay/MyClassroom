@@ -1,6 +1,7 @@
 package com.example.hatim.myclassroom;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
@@ -56,7 +58,11 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
         fragmentInsideDrawer = (FragmentInsideDrawer)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         fragmentInsideDrawer.setUp(R.id.fragment_navigation_drawer,(DrawerLayout)findViewById(R.id.drawer_layout),null);
         fragmentInsideDrawer.setDrawerListener(this);
+
     }
+
+
+
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
