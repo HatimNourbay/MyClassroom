@@ -2,15 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    >
 
    <ImageView
        android:id="@+id/contImg"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignParentLeft="true"
-       android:layout_alignParentStart="true"
-       android:layout_alignParentTop="true"/>
+       android:layout_alignParentTop="true"
+       />
 
 
     <TextView
@@ -20,15 +21,19 @@
         android:layout_toRightOf="@+id/contImg"
         android:layout_alignParentTop="true"
         android:text="Prenom"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
         />
 
     <TextView
         android:id="@+id/contNom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/contPren"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/contPren"
+        android:layout_toRightOf="@+id/contImg"
         android:text="Nom"
+        android:textSize="20dp"
         />
 
 </RelativeLayout>

@@ -10,11 +10,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.hatim.myclassroom.Contacts.FragmentContRecycler;
 import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
 import com.example.hatim.myclassroom.Log.LoginActivity;
+import com.example.hatim.myclassroom.Tab.ContactFragment;
 import com.example.hatim.myclassroom.Tab.DocumentsFragment;
-import com.example.hatim.myclassroom.Tab.FriendsFragment;
 import com.example.hatim.myclassroom.Tab.ViewPagerAdapter;
 import com.example.hatim.myclassroom.Tab.WelcomeFragment;
 
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
                     intent = new Intent(this, LoginActivity.class);
                     break;
                 case 1:
-                   intent = new Intent(this, FragmentContRecycler.class);
                     break;
                 case 2:
                     break;
@@ -88,13 +86,18 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
         adapter.addFragment(new WelcomeFragment(), "Welcome");
-        Fragment friendsFragment = new FriendsFragment();
-        Bundle b = new Bundle();
+
+        //Fragment contactFragment = new ContactFragment();
+        //Bundle b = new Bundle();
         //b.putString("name", String name);
-        friendsFragment.setArguments(b);
-        adapter.addFragment(new FriendsFragment(), "MyFriends");
+        //contactFragment.setArguments(b);
+
+        adapter.addFragment(new ContactFragment(), "MyFriends");
+
         adapter.addFragment(new DocumentsFragment(), "MyDocuments");
+
         viewPager.setAdapter(adapter);
     }
 

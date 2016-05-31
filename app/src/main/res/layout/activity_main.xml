@@ -47,11 +47,6 @@
         tools:context="com.example.hatim.myclassroom.MainActivity">
 
 
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
         <FrameLayout
             android:id="@+id/frame_container"
             android:layout_width="match_parent"
