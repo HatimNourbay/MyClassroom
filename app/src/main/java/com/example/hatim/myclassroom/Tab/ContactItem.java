@@ -6,13 +6,8 @@ package com.example.hatim.myclassroom.Tab;
  */
 public class ContactItem {
 
-    public long id; // ne doit pas avoir la valeur null
-    public int photo;
+    public long id;
     public String prenom;
     public String nom;
-
-    public ContactItem(){
-        super();
-    }
 
 }
