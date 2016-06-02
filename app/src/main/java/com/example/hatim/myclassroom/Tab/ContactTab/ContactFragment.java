@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom.Tab;
+package com.example.hatim.myclassroom.Tab.ContactTab;
 
 
 import android.content.Intent;
@@ -20,7 +20,6 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 

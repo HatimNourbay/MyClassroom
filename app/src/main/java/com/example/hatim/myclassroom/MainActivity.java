@@ -10,12 +10,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.hatim.myclassroom.DocRecycler.DocFragment;
 import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
 import com.example.hatim.myclassroom.Log.LoginActivity;
-import com.example.hatim.myclassroom.Tab.ContactFragment;
-import com.example.hatim.myclassroom.Tab.DocumentsFragment;
+import com.example.hatim.myclassroom.Tab.ContactTab.ContactFragment;
 import com.example.hatim.myclassroom.Tab.ViewPagerAdapter;
-import com.example.hatim.myclassroom.Tab.WelcomeFragment;
+import com.example.hatim.myclassroom.Tab.WelcomeTab.WelcomeFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentInsideDrawer.FragmentDrawerListener {
 
@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
 
     }
 
+
+
+
     @Override
     public void onDrawerItemSelected(View view, int position) {
         displayView(0);
@@ -86,18 +89,9 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
         adapter.addFragment(new WelcomeFragment(), "Welcome");
-
-        //Fragment contactFragment = new ContactFragment();
-        //Bundle b = new Bundle();
-        //b.putString("name", String name);
-        //contactFragment.setArguments(b);
-
         adapter.addFragment(new ContactFragment(), "MyFriends");
-
-        adapter.addFragment(new DocumentsFragment(), "MyDocuments");
-
+        adapter.addFragment(new DocFragment(), "MyDocuments");
         viewPager.setAdapter(adapter);
     }
 

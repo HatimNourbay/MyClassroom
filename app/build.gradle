@@ -20,14 +20,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.unboundid:unboundid-ldapsdk:3.1.1'
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
     compile 'com.android.support:design:23.3.0'
-    compile 'it.sephiroth.android.library.picasso:picasso:2.5.2.4b'
+    compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+    compile 'io.reactivex:rxandroid:1.2.0'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
