@@ -97,16 +97,5 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/addBtn"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/addBtn"
-        android:text="Effacer"
-        android:textAllCaps="false"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/resetBtn"/>
 
 </RelativeLayout>

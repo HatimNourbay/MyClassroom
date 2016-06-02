@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Log.LoginActivity" />
-        <activity android:name=".Log.RegisterActivity"></activity>
+        <activity android:name=".Log.RegisterActivity"/>
         <activity android:name=".Tab.ContactAddActivity"/>
     </application>
 

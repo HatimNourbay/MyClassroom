@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
     TextView addTitleTV, addPrenomTV, addNomTV;
     EditText addPrenomET, addNomET;
     FloatingActionButton addPhotoFABtn;
-    Button addBtn, resetBtn;
+    Button addBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +48,6 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
 
         addPhotoFABtn = (FloatingActionButton) findViewById(R.id.addFABtn);
         addBtn = (Button) findViewById(R.id.addBtn);
-        resetBtn = (Button) findViewById(R.id.resetBtn);
 
         addBtn.setOnClickListener(this);
 
@@ -76,19 +76,17 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
                     reset();
                     showDialog();
 
+
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             // Show a dialog with appropriate message in case input fields are blank
             else {
-                showMessageDialog("All fields are mandatory !!");
+                showMessageDialog("Remplir les champs");
             }
         }
-        else if(v == resetBtn)
-        {
-            reset();
-        }
+
     }
 
     private void showDialog() {
@@ -96,22 +94,23 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // Set the appropriate message into it.
-        alertDialogBuilder.setMessage("Le contact a bien été ajouté !!");
+        alertDialogBuilder.setMessage("Le contact a bien été ajouté, que voulez-vous faire maintenant?");
 
         // Add a positive button and it's action. In our case action would be, just hide the dialog box ,
         // so no need to write any code for that.
-        alertDialogBuilder.setPositiveButton("Ajouter à nouveau",
+        alertDialogBuilder.setPositiveButton("Ajouter nouveau",
                 new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        //finish();
+                        //rien faire -> pour à nouveau remplir le champs
+                        // ou bien mettre finish(), mais dans ce cas va supprimer l'ajout du new contact
                     }
                 });
 
         // Add a negative button and it's action. In our case, just open up the ViewTeacherRecordActivity screen
         // to display all the records
-        alertDialogBuilder.setNegativeButton("Voir les contacts",
+        alertDialogBuilder.setNegativeButton("Voir contacts",
                 new DialogInterface.OnClickListener() {
 
                     @Override
