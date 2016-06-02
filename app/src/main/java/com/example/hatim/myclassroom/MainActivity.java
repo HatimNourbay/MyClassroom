@@ -13,9 +13,9 @@ import android.view.View;
 import com.example.hatim.myclassroom.DocRecycler.DocFragment;
 import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
 import com.example.hatim.myclassroom.Log.LoginActivity;
-import com.example.hatim.myclassroom.Tab.ContactFragment;
+import com.example.hatim.myclassroom.Tab.ContactTab.ContactFragment;
 import com.example.hatim.myclassroom.Tab.ViewPagerAdapter;
-import com.example.hatim.myclassroom.Tab.WelcomeFragment;
+import com.example.hatim.myclassroom.Tab.WelcomeTab.WelcomeFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentInsideDrawer.FragmentDrawerListener {
 

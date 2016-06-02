@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom.Tab;
+package com.example.hatim.myclassroom.Tab.ContactTab;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

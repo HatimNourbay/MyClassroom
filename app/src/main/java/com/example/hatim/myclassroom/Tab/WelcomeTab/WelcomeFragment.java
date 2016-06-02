@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom.Tab;
+package com.example.hatim.myclassroom.Tab.WelcomeTab;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 
 import com.example.hatim.myclassroom.R;
 
-public class DocumentsFragment extends Fragment {
+public class WelcomeFragment extends Fragment {
 
-    public DocumentsFragment() {
+    public WelcomeFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,6 @@ public class DocumentsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_documents, container, false);
+        return inflater.inflate(R.layout.fragment_welcome, container, false);
     }
-
 }

@@ -16,9 +16,7 @@ import android.view.ViewGroup;
 
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
-import com.bignerdranch.android.multiselector.SwappingHolder;
 import com.example.hatim.myclassroom.R;
-import com.example.hatim.myclassroom.SearchDocuments;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,7 +25,6 @@ import java.util.concurrent.Callable;
 
 import rx.Observable;
 import rx.Observer;
-import rx.Scheduler;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

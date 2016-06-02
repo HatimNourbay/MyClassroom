@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom.Tab;
+package com.example.hatim.myclassroom.Tab.ContactTab;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hatim.myclassroom.R;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import it.sephiroth.android.library.picasso.Picasso;
 
 /**
  * Created by Richard on 28/05/2016.

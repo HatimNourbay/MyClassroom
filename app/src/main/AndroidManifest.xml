@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".Log.LoginActivity" />
         <activity android:name=".Log.RegisterActivity"/>
-        <activity android:name=".Tab.ContactAddActivity"/>
+        <activity android:name=".Tab.ContactTab.ContactAddActivity"/>
     </application>
 
 </manifest>

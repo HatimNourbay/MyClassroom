@@ -1,5 +1,5 @@
 # --table-start--
-dataClass=com.example.hatim.myclassroom.Tab.ContactTable
+dataClass=com.example.hatim.myclassroom.Tab.ContactTab.ContactTable
 tableName=contact_table
 # --table-fields-start--
 # --field-start--
