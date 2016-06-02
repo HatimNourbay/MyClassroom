@@ -1,0 +1,24 @@
+# --table-start--
+dataClass=com.example.hatim.myclassroom.Tab.ContactTable
+tableName=contact_table
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=contact_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=photo
+columnName=contact_photo
+# --field-end--
+# --field-start--
+fieldName=prenom
+columnName=contact_prenom
+# --field-end--
+# --field-start--
+fieldName=nom
+columnName=contact_nom
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

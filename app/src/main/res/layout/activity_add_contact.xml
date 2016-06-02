@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addTitleTV"
+        android:gravity="center"
+        android:text="Ajouter un contact"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addPrenomTV"
+        android:text="Prénom"
+        android:textSize="22dp"
+        android:layout_below="@+id/addTitleTV"
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addPrenomET"
+        android:hint="Entrer le prénom"
+        android:textSize="18dp"
+        android:layout_above="@+id/addNomTV"
+        android:layout_toRightOf="@+id/addPrenomTV"
+        android:layout_marginLeft="15dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addNomTV"
+        android:layout_gravity="left"
+        android:text="Nom"
+        android:layout_below="@+id/addPrenomTV"
+        android:layout_marginTop="28dp"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addNomET"
+        android:hint="Entrer le nom"
+        android:textSize="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/addPrenomET"
+        android:layout_alignLeft="@+id/addPrenomET"
+        android:layout_alignStart="@+id/addPrenomET"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addPhotoTV"
+        android:text="Ajouter une photo"
+        android:textSize="22dp"
+        android:layout_below="@+id/addNomTV"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_a_photo_white_48dp"
+        app:fabSize="normal"
+        android:id="@+id/addPhotoFABtn"
+        android:layout_below="@+id/addNomET"
+        android:layout_toRightOf="@+id/addPhotoTV"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addPhotoTV"
+        android:layout_marginTop="100dp"
+        android:text="Ajouter"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/addBtn"/>
+
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package com.example.hatim.myclassroom;
 
 import android.content.Intent;
-import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -9,14 +8,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.example.hatim.myclassroom.DocRecycler.DocFragment;
 import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
 import com.example.hatim.myclassroom.Log.LoginActivity;
-import com.example.hatim.myclassroom.Tab.DocumentsFragment;
-import com.example.hatim.myclassroom.Tab.FriendsFragment;
+import com.example.hatim.myclassroom.Tab.ContactFragment;
 import com.example.hatim.myclassroom.Tab.ViewPagerAdapter;
 import com.example.hatim.myclassroom.Tab.WelcomeFragment;
 
@@ -93,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new WelcomeFragment(), "Welcome");
-        adapter.addFragment(new FriendsFragment(), "MyFriends");
+        adapter.addFragment(new ContactFragment(), "MyFriends");
         adapter.addFragment(new DocFragment(), "MyDocuments");
         viewPager.setAdapter(adapter);
     }
