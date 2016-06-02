@@ -13,7 +13,8 @@
         android:text="Ajouter un contact"
         android:textSize="35dp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimaryDark" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -95,5 +96,6 @@
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:id="@+id/addBtn"/>
+
 
 </RelativeLayout>

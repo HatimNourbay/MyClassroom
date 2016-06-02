@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.hatim.myclassroom.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.sephiroth.android.library.picasso.Picasso;
 
@@ -19,7 +20,8 @@ import it.sephiroth.android.library.picasso.Picasso;
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolderContact> {
 
-    public ArrayList<ContactItem> contactItems;
+    //public ArrayList<ContactItem> contactItems;
+    public List<ContactTable> contactTable;
     public Context context;
 
 
@@ -44,7 +46,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolderContact holder, int position) {
-        ContactItem contact = contactItems.get(position);
+        //ContactItem contact = contactItems.get(position);
+        ContactTable contact = contactTable.get(position);
         Picasso.with(holder.photo.getContext())
                 .load(R.drawable.ic_account_circle_white_48dp)
                 .into(holder.photo);
@@ -60,11 +63,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return contactItems.size();
+        return contactTable.size();
     }
 
-    public ContactAdapter( ArrayList<ContactItem> contactItems) {
-        this.contactItems = contactItems;
+    public ContactAdapter(List<ContactTable> contactItems) {
+        this.contactTable = contactItems;
     }
 
 }
