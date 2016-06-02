@@ -11,15 +11,15 @@ public class MyClassApplication extends Application {
 
 
 
-    SearchDocuments searchDocuments = new SearchDocuments();
+    //SearchDocuments searchDocuments = new SearchDocuments(Environment.getExternalStorageDirectory());
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        if (isExternalStorageReadable()){
+        /*if (isExternalStorageReadable()){
             searchDocuments.execute(Environment.getExternalStorageDirectory());
-        }
+        }*/
 
     }
 

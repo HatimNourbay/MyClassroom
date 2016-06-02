@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.example.hatim.myclassroom.DocRecycler.DocFragment;
 import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
 import com.example.hatim.myclassroom.Log.LoginActivity;
 import com.example.hatim.myclassroom.Tab.DocumentsFragment;
@@ -92,12 +93,8 @@ public class MainActivity extends AppCompatActivity implements FragmentInsideDra
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new WelcomeFragment(), "Welcome");
-        Fragment friendsFragment = new FriendsFragment();
-        Bundle b = new Bundle();
-        //b.putString("name", String name);
-        friendsFragment.setArguments(b);
         adapter.addFragment(new FriendsFragment(), "MyFriends");
-        adapter.addFragment(new DocumentsFragment(), "MyDocuments");
+        adapter.addFragment(new DocFragment(), "MyDocuments");
         viewPager.setAdapter(adapter);
     }
 

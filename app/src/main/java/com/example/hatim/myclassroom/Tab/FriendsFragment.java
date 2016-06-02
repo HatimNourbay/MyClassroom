@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.hatim.myclassroom.R;
 
-public class FriendsFragment extends Fragment {
+public class  FriendsFragment extends Fragment {
 
     public FriendsFragment() {
         // Required empty public constructor

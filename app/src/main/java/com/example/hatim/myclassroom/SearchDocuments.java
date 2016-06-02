@@ -1,42 +1,46 @@
 package com.example.hatim.myclassroom;
 
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.util.Log;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import rx.subjects.PublishSubject;
 
 /**
  * Created by Hatim on 29/05/2016.
  */
-public class SearchDocuments extends AsyncTask< File,File, List<String>>{
-
-    ArrayList<String> docFiles = new ArrayList<String>();
-    ArrayList<File> pdfFiles = new ArrayList<File>();
+public class SearchDocuments{
 
 
+   // public PublishSubject<String> docPushed;
+    File rootDir;
+    public ArrayList<String> pdfList;
 
-    public List<String> getListFiles(File parentDir) {
+    public SearchDocuments(File directoryToPick){
+        rootDir = directoryToPick;
+        pdfList = new ArrayList<>();
+    }
 
-        File[] files = parentDir.listFiles();
-        for (File file : files) {
-            if (file.isDirectory()) {
-                docFiles.addAll(getListFiles(file));
-            } else {
+    public List<File> getListFiles(File parentDir)
+    {
+        List<File> resultList = new ArrayList<>();
+
+        File[] fList = parentDir.listFiles();
+        resultList.addAll(Arrays.asList(fList));
+        for (File file : fList) {
+            if (file.isFile()) {
                 if(file.getName().toLowerCase().endsWith(".pdf")){
-                    docFiles.add(file.getName());
-                    Log.wtf("NEW_FILE",file.getName());
-
+                    //docPushed.onNext(file.getName());
                 }
+            } else if (file.isDirectory()) {
+
+                resultList.addAll(getListFiles(file));
             }
         }
-        return docFiles;
+        return resultList;
     }
 
-    @Override
-    protected List<String> doInBackground(File... params) {
-        return getListFiles(params[0]);
-    }
 }
