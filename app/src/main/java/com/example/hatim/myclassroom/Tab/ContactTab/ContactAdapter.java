@@ -19,7 +19,6 @@ import java.util.List;
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolderContact> {
 
-    //public ArrayList<ContactItem> contactItems;
     public List<ContactTable> contactTable;
     public Context context;
 
@@ -45,7 +44,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolderContact holder, int position) {
-        //ContactItem contact = contactItems.get(position);
+
         ContactTable contact = contactTable.get(position);
         Picasso.with(holder.photo.getContext())
                 .load(R.drawable.ic_account_circle_white_48dp)

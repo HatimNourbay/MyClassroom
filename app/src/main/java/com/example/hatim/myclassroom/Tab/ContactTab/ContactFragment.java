@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class ContactFragment extends Fragment {
 
-    //public ArrayList<ContactItem> contactItem = new ArrayList<ContactItem>();
+
     public FloatingActionButton addFABtn;
     private DataBaseHelper dataBaseHelper = null;
     private Dao<ContactTable, Integer> contactDao;
@@ -45,10 +45,10 @@ public class ContactFragment extends Fragment {
         contactListV.setLayoutManager(new LinearLayoutManager(getActivity())); // détecte les changements de données et adapte
 
         try {
-            // This is how, a reference of DAO object can be done
+            // reference objet DAO
             contactDao =  getHelper().getContactDao();
 
-            // Query the database. We need all the records so, used queryForAll()
+            // charger la base de donnée
             List<ContactTable> contactTable = contactDao.queryForAll();
 
             // Set the header of the ListView
@@ -58,7 +58,6 @@ public class ContactFragment extends Fragment {
             ((TextView)rowView.findViewById(R.id.contNom)).setText("Nom");
            //contactListV.addHeaderView(rowView);
 
-            //Now, link the Adapter with the RecyclerView
             //Adapter
             ContactAdapter contactAdapter = new ContactAdapter(contactTable);
             contactListV.setAdapter( contactAdapter);
@@ -79,18 +78,6 @@ public class ContactFragment extends Fragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        //add contact manually -> temporaire, le temps de pouvoir ajouter un contact
-        /*ContactItem contactA = new ContactItem();
-        contactA.id = 1;
-        contactA.prenom = "Ateam";
-        contactA.nom = "NourRich";
-        contactItem.add(contactA);
-        ContactItem contactB = new ContactItem();
-        contactB.id = 2;
-        contactB.prenom = "Bever";
-        contactB.nom = "RichNour";
-        contactItem.add(contactB);*/
 
 
         //Add contact Button
