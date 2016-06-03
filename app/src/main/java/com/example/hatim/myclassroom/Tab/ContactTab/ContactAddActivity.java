@@ -114,8 +114,8 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent negativeActivity = new Intent(getApplicationContext(),ContactFragment.class);
-                        startActivity(negativeActivity);
+                        //Intent negativeActivity = new Intent(getApplicationContext(),ContactFragment.class);
+                        //startActivity(negativeActivity);
                         finish();
                     }
                 });

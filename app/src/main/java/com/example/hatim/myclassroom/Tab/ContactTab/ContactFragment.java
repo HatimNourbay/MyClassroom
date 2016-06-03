@@ -30,9 +30,9 @@ public class ContactFragment extends Fragment {
 
     //public ArrayList<ContactItem> contactItem = new ArrayList<ContactItem>();
     public FloatingActionButton addFABtn;
-    private DataBaseHelper dataBaseHelper = null;
+    public DataBaseHelper dataBaseHelper = null;
     private Dao<ContactTable, Integer> contactDao;
-
+    ContactAdapter contactAdapter;
 
     @Nullable
     @Override
@@ -60,7 +60,7 @@ public class ContactFragment extends Fragment {
 
             //Now, link the Adapter with the RecyclerView
             //Adapter
-            ContactAdapter contactAdapter = new ContactAdapter(contactTable);
+            contactAdapter = new ContactAdapter(contactTable);
             contactListV.setAdapter( contactAdapter);
 
             // Attach OnItemLongClickListener and OnItemClickListener to track user action and perform accordingly
@@ -70,7 +70,7 @@ public class ContactFragment extends Fragment {
             // If, no record found in the database, appropriate message needs to be displayed.
             if(contactTable.size() == 0)
             {
-                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setMessage("Pas de contact");
                 final AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
@@ -80,17 +80,7 @@ public class ContactFragment extends Fragment {
             e.printStackTrace();
         }
 
-        //add contact manually -> temporaire, le temps de pouvoir ajouter un contact
-        /*ContactItem contactA = new ContactItem();
-        contactA.id = 1;
-        contactA.prenom = "Ateam";
-        contactA.nom = "NourRich";
-        contactItem.add(contactA);
-        ContactItem contactB = new ContactItem();
-        contactB.id = 2;
-        contactB.prenom = "Bever";
-        contactB.nom = "RichNour";
-        contactItem.add(contactB);*/
+        contactAdapter.notifyDataSetChanged();
 
 
         //Add contact Button
@@ -99,7 +89,7 @@ public class ContactFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Ouverture nouvelle addContactActivity
-                Intent intent = new Intent(getActivity(), ContactAddActivity.class);
+                Intent intent = new Intent(getContext(), ContactAddActivity.class);
                 getActivity().startActivity(intent);
             }
         });
@@ -110,7 +100,7 @@ public class ContactFragment extends Fragment {
 
     private DataBaseHelper getHelper() {
         if (dataBaseHelper == null) {
-            dataBaseHelper = OpenHelperManager.getHelper(getActivity(), DataBaseHelper.class);
+            dataBaseHelper = OpenHelperManager.getHelper(getContext(), DataBaseHelper.class);
         }
         return dataBaseHelper;
     }

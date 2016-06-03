@@ -22,3 +22,21 @@ columnName=contact_nom
 # --table-fields-end--
 # --table-end--
 #################################
+# --table-start--
+dataClass=com.example.hatim.myclassroom.Tab.DocTab.DocumentsTable
+tableName=contact_table
+# --table-fields-start--
+# --field-start--
+fieldName=name
+columnName=doc_name
+# --field-end--
+# --field-start--
+fieldName=type
+columnName=doc_type
+# --field-end--
+# --field-start--
+fieldName=path
+columnName=doc_path
+# --field-end--
+# --table-fields-end--
+# --table-end--
