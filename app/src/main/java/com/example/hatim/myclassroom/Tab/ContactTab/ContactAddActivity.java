@@ -20,9 +20,7 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 
 
-/**
- * Created by Richard on 01/06/2016.
- */
+
 public class ContactAddActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Référence à la classe DataBaseHelper pour accéder aux DAO
@@ -142,8 +140,6 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
         addNomET.setText("");
 
     }
-
-
 
     // This is how, DatabaseHelper can be initialized for future use
     private DataBaseHelper getHelper() {

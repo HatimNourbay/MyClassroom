@@ -10,6 +10,10 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+    }
+    dexOptions{
+        javaMaxHeapSize "4g"
     }
     buildTypes {
         release {
@@ -33,4 +37,6 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.j256.ormlite:ormlite-jdbc:4.48'
+    compile 'com.google.gms:google-services:3.0.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
 }

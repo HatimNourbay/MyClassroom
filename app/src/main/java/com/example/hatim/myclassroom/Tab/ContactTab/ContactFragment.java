@@ -41,40 +41,35 @@ public class ContactFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_cont_recycler, container, false);
         //Recycler view
         RecyclerView contactListV = (RecyclerView) view.findViewById(R.id.cont_list);
-        contactListV.setHasFixedSize(true); // pour garder la même taille
-        contactListV.setLayoutManager(new LinearLayoutManager(getActivity())); // détecte les changements de données et adapte
+        contactListV.setHasFixedSize(true);
+        contactListV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         try {
-            // This is how, a reference of DAO object can be done
+
             contactDao =  getHelper().getContactDao();
 
-            // Query the database. We need all the records so, used queryForAll()
+
             List<ContactTable> contactTable = contactDao.queryForAll();
 
-            // Set the header of the ListView
+
             final LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
             final View rowView = layoutInflater.inflate(R.layout.contacts_layout, contactListV, false);
             ((TextView)rowView.findViewById(R.id.contPren)).setText("Prenom");
             ((TextView)rowView.findViewById(R.id.contNom)).setText("Nom");
-           //contactListV.addHeaderView(rowView);
 
-            //Now, link the Adapter with the RecyclerView
-            //Adapter
+
             contactAdapter = new ContactAdapter(contactTable);
             contactListV.setAdapter( contactAdapter);
 
-            // Attach OnItemLongClickListener and OnItemClickListener to track user action and perform accordingly
-            /*contactListV.setOnItemLongClickListener(this;
-            contactListV.setOnItemClickListener(this);*/
-
             // If, no record found in the database, appropriate message needs to be displayed.
-            if(contactTable.size() == 0)
+            /*if(contactTable.size() == 0)
             {
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setMessage("Pas de contact");
                 final AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
-            }
+            }*/
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +83,8 @@ public class ContactFragment extends Fragment {
         addFABtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Ouverture nouvelle addContactActivity
+
+
                 Intent intent = new Intent(getContext(), ContactAddActivity.class);
                 getActivity().startActivity(intent);
             }

@@ -22,12 +22,11 @@ import com.example.hatim.myclassroom.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Hatim on 31/05/2016.
- */
+
 public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocHolder> {
 
     ArrayList<Document> docList;
+    ArrayList<Document> docSelected = new ArrayList<>();
 
     private MultiSelector mMultiSelector;
 
@@ -50,6 +49,7 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocHolder> {
         holder.docName.setText(docItem.nameDoc);
         holder.docTypeImage.setImageResource(docItem.imageDoc);
         holder.GoodName = docItem.nameDoc;
+        holder.docItemHolded = docItem;
     }
 
     @Override
@@ -62,6 +62,7 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocHolder> {
         public ImageView docTypeImage;
         public TextView docName;
         public String GoodName;
+        public Document docItemHolded;
 
         public DocHolder(View itemView, MultiSelector multiSelector) {
             super(itemView, multiSelector);
@@ -79,22 +80,15 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocHolder> {
 
         @Override
         public void onClick(View v) {
-            /*if (document == null) {
-                return;
-            }
-            if (!multiSelector.tapSelection(this)) {
-                // start an instance of CrimePagerActivity
-                Intent i = new Intent(getActivity(), CrimePagerActivity.class);
-                i.putExtra(DocFragment.EXTRA_CRIME_ID, c.getId());
-                startActivity(i);
-            }*/
             Log.wtf("NameSelect", GoodName) ;
 
             if (mMultiSelector.isSelected(getAdapterPosition(),getItemId())){
                 mMultiSelector.setSelected(this,false);
+                docSelected.remove(docItemHolded);
             }
             else{
                 mMultiSelector.setSelected(this,true);
+                docSelected.add(docItemHolded);
             }
 
         }
@@ -104,10 +98,7 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocHolder> {
             Context context = v.getContext();
             return true;
 
-
         }
-
-
         private Drawable setColorActivation(Context context) {
 
 

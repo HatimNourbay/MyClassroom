@@ -23,19 +23,23 @@ columnName=contact_nom
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.hatim.myclassroom.Tab.DocTab.DocumentsTable
-tableName=contact_table
+dataClass=com.example.hatim.myclassroom.DocRecycler.DocumentItemDB
+tableName=doc_table
 # --table-fields-start--
 # --field-start--
-fieldName=name
+fieldName=id
+columnName=doc_id
+# --field-end--
+# --field-start--
+fieldName=nameDoc
 columnName=doc_name
 # --field-end--
 # --field-start--
-fieldName=type
+fieldName=photoType
 columnName=doc_type
 # --field-end--
 # --field-start--
-fieldName=path
+fieldName=pathDoc
 columnName=doc_path
 # --field-end--
 # --table-fields-end--

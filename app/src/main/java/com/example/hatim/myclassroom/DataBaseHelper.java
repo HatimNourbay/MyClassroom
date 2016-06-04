@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.hatim.myclassroom.DocRecycler.DocumentItemDB;
 import com.example.hatim.myclassroom.Tab.ContactTab.ContactTable;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -18,11 +19,13 @@ import java.sql.SQLException;
  */
 public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final String DATABASE_NAME = "classeroomDataBase.db";
+    private static final String DATABASE_NAME = "classroomDataBase.db";
     private static final int DATABASE_VERSION = 1;
     public SQLiteDatabase sqliteDatabase;
 
-    private Dao<ContactTable, Integer> contactDao;
+    private Dao<ContactTable, Integer> contactDao = null;
+    private Dao<DocumentItemDB, Integer> documentDao = null;
+
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
@@ -34,9 +37,10 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             // lors de la première ouverture de l'app
             TableUtils.createTable(connectionSource, ContactTable.class);
+            TableUtils.createTable(connectionSource, DocumentItemDB.class);
 
         } catch (SQLException e) {
-            Log.e(DataBaseHelper.class.getName(), "Unable to create datbases", e);
+            Log.e(DataBaseHelper.class.getName(), "Unable to create databases", e);
         }
 
     }
@@ -48,6 +52,7 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 
             // mettre à jour la db
             TableUtils.dropTable(connectionSource, ContactTable.class, true);
+            TableUtils.dropTable(connectionSource, DocumentItemDB.class, true);
             onCreate(sqliteDatabase, connectionSource);
 
         } catch (SQLException e) {
@@ -62,5 +67,12 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
             contactDao = getDao(ContactTable.class);
         }
         return contactDao;
+    }
+
+    public Dao<DocumentItemDB, Integer> getDocumentDao() throws SQLException {
+        if (documentDao == null) {
+            documentDao = getDao(DocumentItemDB.class);
+        }
+        return documentDao;
     }
 }
