@@ -33,6 +33,12 @@
     <string name="first_connection">first</string>
     <string name="acc_connected">CheckConnected</string>
 
+    <string name="about_text">My classeroom vous permet de partager et échanger des documents avec d’autres étudiants.\nC’est facile, il suffit de vous connecter avec votre compte gmail.</string>
+
+    <string name="no_ext">Remplir le(s) champ(s) vide(s), svp</string>
+    <string name="cont_ajouté">Le contact a bien été ajouté, que voulez-vous faire maintenant?</string>
+    <string name="cont_encore">Ajouter nouveau</string>
+    <string name="cont_view">Voir contacts</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
