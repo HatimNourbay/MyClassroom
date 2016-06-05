@@ -128,13 +128,15 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
             @Override
             public void onClick(View v) {
                 List<Integer> docToDeletePosition = mMultiSelector.getSelectedPositions();
-                ArrayList<Document> docDelete = null;
-                /*for (Integer i : docToDeletePosition )
+                List<Document> docDelete = new ArrayList<>();
+                for (Integer i : docToDeletePosition )
                 {
                     Integer bb = documentList.size();
                     Log.wtf("existOrNot",bb.toString());
 
-                    docDelete.add(documentList.get(i));
+                    Document doc1 = documentList.get(i);
+
+                    docDelete.add(doc1);
                 }
                 if (!docDelete.isEmpty()){
                     try {
@@ -142,7 +144,7 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                }*/
+                }
             }
         });
 

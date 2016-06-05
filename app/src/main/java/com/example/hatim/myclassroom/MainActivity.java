@@ -89,7 +89,8 @@ public class MainActivity extends BaseLogin implements FragmentInsideDrawer.Frag
             //Intent intent = null;
             switch (position) {
                 case 0:
-                    //intent = new Intent(this, LoginActivity.class);
+                    Intent aboutStart = new Intent(this, AboutActivity.class);
+                    startActivity(aboutStart);
                     break;
                 case 1:
                     onLogout();

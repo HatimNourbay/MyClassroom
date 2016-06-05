@@ -35,6 +35,7 @@
                 android:value="@integer/google_play_services_version" />
 
         </activity>
+        <activity android:name=".AboutActivity"/>
         <activity android:name=".Tab.ContactTab.ContactAddActivity" />
         <activity android:name=".DocumentChoosing.DocumentPickActivity"/>
     </application>

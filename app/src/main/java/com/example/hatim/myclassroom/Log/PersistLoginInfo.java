@@ -47,7 +47,6 @@ public class PersistLoginInfo {
             editor.commit();
 
         } else {
-            // Signed out, show unauthenticated UI.
         }
     }
 
@@ -59,6 +58,7 @@ public class PersistLoginInfo {
         editor.putString(mContext.getString(R.string.acc_photo),"empty");
         editor.putString(mContext.getString(R.string.acc_mail),"mail");
         editor.putString(mContext.getString(R.string.acc_token),"0000");
+        editor.putBoolean(mContext.getString(R.string.acc_connected),true);
         editor.commit();
 
 

@@ -99,6 +99,9 @@ public class BaseLogin extends AppCompatActivity implements GoogleApiClient.OnCo
                                 public void onResult(Status status) {
                                     if (status.isSuccess()){
                                         Log.wtf("logout","success");
+                                        SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.prefs_name),MODE_PRIVATE).edit();
+                                        editor.putBoolean(getString(R.string.acc_connected),false);
+                                        editor.commit();
                                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(intent);
                                         finish();

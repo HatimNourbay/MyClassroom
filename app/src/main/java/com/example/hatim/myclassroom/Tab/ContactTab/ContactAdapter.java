@@ -48,7 +48,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     public void onBindViewHolder(ViewHolderContact holder, int position) {
         //ContactItem contact = contactItems.get(position);
         ContactTable contact = contactTable.get(position);
-        /*if (contact.photo != null){
+        if (contact.photo != null){
             Picasso.with(holder.photo.getContext())
                     .load(contact.photo)
                     .transform(new CircleTransform())
@@ -58,7 +58,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             Picasso.with(holder.photo.getContext())
                     .load(R.drawable.ic_account_circle_white_48dp)
                     .into(holder.photo);
-        }*/
+        }
 
         Picasso.with(holder.photo.getContext())
                 .load(R.drawable.ic_account_circle_white_48dp)
