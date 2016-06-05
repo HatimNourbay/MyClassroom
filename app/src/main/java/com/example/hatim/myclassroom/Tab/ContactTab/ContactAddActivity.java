@@ -20,9 +20,12 @@ import android.widget.Toast;
 
 import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
 import com.example.hatim.myclassroom.R;
+import com.example.hatim.myclassroom.Tab.WelcomeTab.CircleTransform;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.sql.SQLException;
 
 
@@ -103,18 +106,23 @@ public class ContactAddActivity extends AppCompatActivity {
                 String imgDecodableString = cursor.getString(columnIndex);
                 cursor.close();
                 // Set the Image in ImageView after decoding the String
-                contactPreviewPhoto.setImageBitmap(BitmapFactory
-                        .decodeFile(imgDecodableString));
+                //contactPreviewPhoto.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
+                    Picasso.with(getApplicationContext())
+                            .load(selectedImage)
+                            .error(R.drawable.ic_account_circle_white_48dp)
+                            .transform(new CircleTransform())
+                            .into(contactPreviewPhoto);
+
                 //contactTable.photoPath = imgDecodableString;
                 // -> à rajouter qd modifications effectuée dans ContactTable: c a d int en String + modification du nom: photo photoPath
-                // il faudra que tu ajoutes le chemin dans picasso (qui est dans l'adapter) -> pour que ça mette l'image 
+                // il faudra que tu ajoutes le chemin dans picasso (qui est dans l'adapter) -> pour que ça mette l'image
 
             } else {
-                Toast.makeText(this, "You haven't picked Image",
+                Toast.makeText(this, "Vous n'avez pas choisi d'image",
                         Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Le chargement a échoué", Toast.LENGTH_LONG)
                     .show();
         }
     }
@@ -148,7 +156,7 @@ public class ContactAddActivity extends AppCompatActivity {
             // Show a dialog with appropriate message in case input fields are blank
             else {
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("@string/no_text");
+                alertDialogBuilder.setMessage("Remplir le(s) champ(s) vide(s), svp");
                 final AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
@@ -161,11 +169,11 @@ public class ContactAddActivity extends AppCompatActivity {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // Set the appropriate message into it.
-        alertDialogBuilder.setMessage("@string/cont_ajouté");
+        alertDialogBuilder.setMessage("Le contact a bien été ajouté, que voulez-vous faire maintenant?");
 
         // Add a positive button and it's action. In our case action would be, just hide the dialog box ,
         // so no need to write any code for that.
-        alertDialogBuilder.setPositiveButton("@string/cont_encore",
+        alertDialogBuilder.setPositiveButton("Ajouter nouveau",
                 new DialogInterface.OnClickListener() {
 
                     @Override
@@ -176,7 +184,7 @@ public class ContactAddActivity extends AppCompatActivity {
                 });
 
         // Add a negative button and it's action.
-        alertDialogBuilder.setNegativeButton("@string/cont_view",
+        alertDialogBuilder.setNegativeButton("Voir contacts",
                 new DialogInterface.OnClickListener() {
 
                     @Override
