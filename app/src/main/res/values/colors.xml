@@ -6,4 +6,5 @@
     <color name="colorActivated">#f2e65f</color>
     <color name="colorLayout">#df8f8ef1</color>
     <color name="white">#FFFFFF</color>
+    <color name="red">#fa3535</color>
 </resources>

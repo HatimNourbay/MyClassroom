@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class ManageDocuments {
         for (Document doc : DocToPersist) {
             DocumentItemDB documentItemDB = new DocumentItemDB();
 
+            documentItemDB.id = doc.id;
             documentItemDB.nameDoc = doc.nameDoc;
             documentItemDB.photoType = doc.imageDoc;
             documentItemDB.pathDoc = doc.filePath;
@@ -50,6 +52,7 @@ public class ManageDocuments {
                 for (DocumentItemDB docDb: documentInDB) {
 
                     Document docToAdd = new Document();
+                    docToAdd.id = docDb.id;
                     docToAdd.nameDoc = docDb.nameDoc;
                     docToAdd.filePath = docDb.pathDoc;
                     docToAdd.imageDoc = docDb.photoType;
@@ -64,6 +67,21 @@ public class ManageDocuments {
             e.printStackTrace();
         }
         return retrievedDocuments;
+    }
+
+    public List <DocumentItemDB> deleteDocuments(List<Document> documentDeleted) throws SQLException {
+
+        Dao<DocumentItemDB,Integer> documentDao = getHelper().getDocumentDao();
+        List<DocumentItemDB> docDB = null;
+
+
+        QueryBuilder<DocumentItemDB, Integer> queryBuilder = documentDao.queryBuilder();
+        for (Document doc : documentDeleted) {
+            DocumentItemDB accountList = documentDao.queryForId(doc.id);
+            docDB.add(accountList);
+        }
+
+        return docDB;
     }
 
 

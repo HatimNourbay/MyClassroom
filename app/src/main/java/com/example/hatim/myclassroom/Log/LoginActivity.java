@@ -1,10 +1,12 @@
 package com.example.hatim.myclassroom.Log;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.hatim.myclassroom.BaseLogin;
+import com.example.hatim.myclassroom.DocumentChoosing.DocumentPickActivity;
 import com.example.hatim.myclassroom.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -59,4 +61,14 @@ public class LoginActivity extends BaseLogin implements View.OnClickListener {
         }
     }
 
+    public void onClickNoGoogle(View view) {
+
+
+        persistLoginInfo.withoutGoogle(myClassPrefs);
+
+        Intent startMain = new Intent(this, DocumentPickActivity.class);
+        startActivity(startMain);
+        finish();
+
+    }
 }

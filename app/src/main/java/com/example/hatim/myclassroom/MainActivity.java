@@ -15,8 +15,11 @@ import com.example.hatim.myclassroom.Drawer.FragmentInsideDrawer;
 import com.example.hatim.myclassroom.Log.LoginActivity;
 import com.example.hatim.myclassroom.Tab.ContactTab.ContactFragment;
 import com.example.hatim.myclassroom.Tab.DocTab.DocumentsFragment;
+import com.example.hatim.myclassroom.Tab.OnBackPressedListener;
 import com.example.hatim.myclassroom.Tab.ViewPagerAdapter;
 import com.example.hatim.myclassroom.Tab.WelcomeTab.WelcomeFragment;
+
+import java.util.List;
 
 public class MainActivity extends BaseLogin implements FragmentInsideDrawer.FragmentDrawerListener {
 
@@ -105,6 +108,19 @@ public class MainActivity extends BaseLogin implements FragmentInsideDrawer.Frag
         adapter.addFragment(new ContactFragment(), "MyFriends");
         adapter.addFragment(new DocumentsFragment(), "MyDocuments");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        if (fragmentList != null) {
+            //TODO: Perform your logic to pass back press here
+            for(Fragment fragment : fragmentList){
+                if(fragment instanceof OnBackPressedListener){
+                    ((OnBackPressedListener)fragment).onBackPressed();
+                }
+            }
+        }
     }
 
     private void setupTabIcons() {

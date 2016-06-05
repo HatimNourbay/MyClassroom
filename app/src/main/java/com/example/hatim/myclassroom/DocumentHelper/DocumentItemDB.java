@@ -12,7 +12,7 @@ public class DocumentItemDB implements Serializable{
     private static final long serialVersionUID = 208251231236468L;
 
     @DatabaseField(generatedId = true, columnName = "doc_id", canBeNull = false)
-    public int id;
+    public static int id;
 
     @DatabaseField(columnName = "doc_type")
     public int photoType;

@@ -1,6 +1,8 @@
 package com.example.hatim.myclassroom.Tab.ContactTab;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
+import com.example.hatim.myclassroom.MainActivity;
 import com.example.hatim.myclassroom.R;
+import com.example.hatim.myclassroom.Tab.DocTab.OnHeadlineSelectedListener;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -22,7 +26,7 @@ import java.sql.SQLException;
 
 public class ContactAddActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //Référence à la classe DataBaseHelper pour accéder aux DAO
+
     private DataBaseHelper databaseHelper = null;
 
     TextView addTitleTV, addPrenomTV, addNomTV;
@@ -30,9 +34,12 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
     FloatingActionButton addPhotoFABtn;
     Button addBtn;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_add_contact);
 
         addTitleTV = (TextView) findViewById(R.id.addTitleTV);
@@ -44,6 +51,14 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
 
         addPhotoFABtn = (FloatingActionButton) findViewById(R.id.addFABtn);
         addBtn = (Button) findViewById(R.id.addBtn);
+
+        /*try {
+            mCallback = (OnHeadlineSelectedListener) this;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(this.toString()
+                    + " must implement OnHeadlneSelectedListener");
+        }*/
+
 
         addBtn.setOnClickListener(this);
 
@@ -111,8 +126,8 @@ public class ContactAddActivity extends AppCompatActivity implements View.OnClic
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Intent negativeActivity = new Intent(getApplicationContext(),ContactFragment.class);
-                        //startActivity(negativeActivity);
+                        Intent negativeActivity = new Intent();
+                        setResult(1,negativeActivity);
                         finish();
                     }
                 });

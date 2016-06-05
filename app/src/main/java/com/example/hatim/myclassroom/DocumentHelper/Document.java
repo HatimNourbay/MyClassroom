@@ -5,6 +5,7 @@ package com.example.hatim.myclassroom.DocumentHelper;
  */
 public class Document {
 
+    public int id;
     public int imageDoc;
     public String nameDoc;
     public String filePath;

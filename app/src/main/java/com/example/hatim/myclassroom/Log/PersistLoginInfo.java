@@ -34,10 +34,9 @@ public class PersistLoginInfo {
                     editor.putString(mContext.getString(R.string.acc_photo),acct.getPhotoUrl().toString());
 
                     InformationLoading informationLoading = new InformationLoading();
-                    if (!myClassPrefs.getString(mContext.getString(R.string.acc_photo),"empty").equalsIgnoreCase("empty")){
-                        informationLoading.retrieveProfilePicture(myClassPrefs.getString(mContext.getString(R.string.acc_photo),"empty"),mContext);
+                    if (!(acct.getPhotoUrl() == null)){
+                        informationLoading.retrieveProfilePicture(acct.getPhotoUrl().toString(),mContext);
                     }
-
                 }
                 else{
                     editor.putString(mContext.getString(R.string.acc_photo),"empty");
@@ -50,6 +49,18 @@ public class PersistLoginInfo {
         } else {
             // Signed out, show unauthenticated UI.
         }
+    }
+
+
+    public void withoutGoogle(SharedPreferences myClassPrefs){
+        SharedPreferences.Editor editor = myClassPrefs.edit();
+
+        editor.putString(mContext.getString(R.string.acc_name),"MonNom");
+        editor.putString(mContext.getString(R.string.acc_photo),"empty");
+        editor.putString(mContext.getString(R.string.acc_mail),"mail");
+        editor.putString(mContext.getString(R.string.acc_token),"0000");
+        editor.commit();
+
 
     }
 }

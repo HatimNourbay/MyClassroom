@@ -2,26 +2,35 @@ package com.example.hatim.myclassroom;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
+import android.widget.HeaderViewListAdapter;
+
+import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
+import com.example.hatim.myclassroom.DocumentHelper.Document;
+import com.example.hatim.myclassroom.DocumentHelper.DocumentItemDB;
+import com.example.hatim.myclassroom.DocumentHelper.ManageDocuments;
+import com.example.hatim.myclassroom.Tab.DocTab.OnHeadlineSelectedListener;
+import com.example.hatim.myclassroom.Tab.WelcomeTab.WelcomeFragment;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class MyClassApplication extends MultiDexApplication implements Application.ActivityLifecycleCallbacks {
 
 
+    private DataBaseHelper dataBaseHelper = null;
+    private Dao<DocumentItemDB, Integer> documentItemDBs;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
-        //SharedPreferences myClassPrefs = getSharedPreferences(getString(R.string.prefs_name),MODE_PRIVATE);
-
-        /*if (myClassPrefs.contains(getString(R.string.first_connection))){
-            SharedPreferences.Editor editor = myClassPrefs.edit();
-            editor.putBoolean(getString(R.string.acc_connected),true);
-            editor.commit();
-        }*/
 
     }
 
@@ -42,6 +51,19 @@ public class MyClassApplication extends MultiDexApplication implements Applicati
 
         if (activity instanceof MainActivity){
 
+            ManageDocuments manage = new ManageDocuments(this);
+            try {
+                documentItemDBs = getHelper().getDocumentDao();
+                ArrayList<Document> dcoumentDb = manage.retrieveDatabaseList(documentItemDBs);
+
+                WelcomeFragment welcomeFragment = (WelcomeFragment)((MainActivity) activity).getSupportFragmentManager().findFragmentById(R.id.welcome_fragment);
+                //welcomeFragment.
+
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
 
         }
@@ -66,5 +88,13 @@ public class MyClassApplication extends MultiDexApplication implements Applicati
     @Override
     public void onActivityDestroyed(Activity activity) {
 
+    }
+
+
+    private DataBaseHelper getHelper() {
+        if (dataBaseHelper == null) {
+            dataBaseHelper = OpenHelperManager.getHelper(this, DataBaseHelper.class);
+        }
+        return dataBaseHelper;
     }
 }

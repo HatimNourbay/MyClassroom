@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
 import com.example.hatim.myclassroom.R;
+import com.example.hatim.myclassroom.Tab.DocTab.OnHeadlineSelectedListener;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -25,13 +26,14 @@ import java.util.List;
 /**
  * Created by Richard on 28/05/2016.
  */
-public class ContactFragment extends Fragment {
+public class ContactFragment extends Fragment{
 
     //public ArrayList<ContactItem> contactItem = new ArrayList<ContactItem>();
     public FloatingActionButton addFABtn;
     public DataBaseHelper dataBaseHelper = null;
     private Dao<ContactTable, Integer> contactDao;
     ContactAdapter contactAdapter;
+    List<ContactTable> contactTable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class ContactFragment extends Fragment {
             contactDao =  getHelper().getContactDao();
 
 
-            List<ContactTable> contactTable = contactDao.queryForAll();
+            contactTable = contactDao.queryForAll();
 
 
             final LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
@@ -90,13 +92,34 @@ public class ContactFragment extends Fragment {
 
 
                 Intent intent = new Intent(getContext(), ContactAddActivity.class);
-                getActivity().startActivity(intent);
+                getActivity().startActivityForResult(intent,1);
             }
         });
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1){
+            try {
+                contactTable = contactDao.queryForAll();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            contactAdapter.notifyDataSetChanged();
+        }
+
+
+    }
 
     private DataBaseHelper getHelper() {
         if (dataBaseHelper == null) {
@@ -115,6 +138,4 @@ public class ContactFragment extends Fragment {
             dataBaseHelper = null;
         }
     }
-
-
 }
