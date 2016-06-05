@@ -17,7 +17,7 @@ public class ContactTable implements Serializable{
     public int id;
 
     @DatabaseField(columnName = "contact_photo")
-    public int photo;
+    public String photo;
 
     @DatabaseField(columnName = "contact_prenom")
     public String prenom;
@@ -30,7 +30,7 @@ public class ContactTable implements Serializable{
 
     }
 
-    public ContactTable(final int photo, final String nom, final String prenom){
+    public ContactTable(final String photo, final String nom, final String prenom){
         this.photo = photo;
         this.prenom = prenom;
         this.nom = nom;

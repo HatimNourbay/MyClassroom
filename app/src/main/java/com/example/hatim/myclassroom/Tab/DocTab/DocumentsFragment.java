@@ -10,6 +10,7 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -127,8 +128,12 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
             @Override
             public void onClick(View v) {
                 List<Integer> docToDeletePosition = mMultiSelector.getSelectedPositions();
-                List<Document> docDelete = null;
-                for (Integer i : docToDeletePosition ) {
+                ArrayList<Document> docDelete = null;
+                /*for (Integer i : docToDeletePosition )
+                {
+                    Integer bb = documentList.size();
+                    Log.wtf("existOrNot",bb.toString());
+
                     docDelete.add(documentList.get(i));
                 }
                 if (!docDelete.isEmpty()){
@@ -137,8 +142,7 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                }
-
+                }*/
             }
         });
 
@@ -192,6 +196,7 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
         if (isPanelShown()){
             slideUpDown(hiddenPanel);
         }
+        mMultiSelector.clearSelections();
     }
 
 
@@ -226,7 +231,6 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
 
             @Override
             public boolean onLongClick(View v) {
-
 
                 //((AppCompatActivity) getActivity()).startSupportActionMode(mDeleteMode);
 

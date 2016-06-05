@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hatim.myclassroom.R;
+import com.example.hatim.myclassroom.Tab.WelcomeTab.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,6 +48,18 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     public void onBindViewHolder(ViewHolderContact holder, int position) {
         //ContactItem contact = contactItems.get(position);
         ContactTable contact = contactTable.get(position);
+        /*if (contact.photo != null){
+            Picasso.with(holder.photo.getContext())
+                    .load(contact.photo)
+                    .transform(new CircleTransform())
+                    .into(holder.photo);
+        }
+        else{
+            Picasso.with(holder.photo.getContext())
+                    .load(R.drawable.ic_account_circle_white_48dp)
+                    .into(holder.photo);
+        }*/
+
         Picasso.with(holder.photo.getContext())
                 .load(R.drawable.ic_account_circle_white_48dp)
                 .into(holder.photo);
