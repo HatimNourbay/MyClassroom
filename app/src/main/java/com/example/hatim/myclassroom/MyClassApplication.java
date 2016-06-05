@@ -1,12 +1,14 @@
 package com.example.hatim.myclassroom;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
-public class MyClassApplication extends MultiDexApplication {
+public class MyClassApplication extends MultiDexApplication implements Application.ActivityLifecycleCallbacks {
 
 
     @Override
@@ -23,4 +25,46 @@ public class MyClassApplication extends MultiDexApplication {
 
     }
 
+    @Override
+    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+
+
+    }
+
+    @Override
+    public void onActivityStarted(Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityResumed(Activity activity) {
+
+        if (activity instanceof MainActivity){
+
+
+
+        }
+
+    }
+
+    @Override
+    public void onActivityPaused(Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityStopped(Activity activity) {
+
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+    }
+
+    @Override
+    public void onActivityDestroyed(Activity activity) {
+
+    }
 }

@@ -1,11 +1,12 @@
-package com.example.hatim.myclassroom;
+package com.example.hatim.myclassroom.DatabaseParams;
 
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.hatim.myclassroom.DocRecycler.DocumentItemDB;
+import com.example.hatim.myclassroom.DocumentHelper.DocumentItemDB;
+import com.example.hatim.myclassroom.R;
 import com.example.hatim.myclassroom.Tab.ContactTab.ContactTable;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;

@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom;
+package com.example.hatim.myclassroom.DatabaseParams;
 
 import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 

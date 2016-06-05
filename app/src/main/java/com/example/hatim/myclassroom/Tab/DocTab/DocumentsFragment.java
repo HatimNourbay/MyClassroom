@@ -1,8 +1,8 @@
 package com.example.hatim.myclassroom.Tab.DocTab;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,20 +15,17 @@ import android.view.ViewGroup;
 
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
-import com.example.hatim.myclassroom.DataBaseHelper;
-import com.example.hatim.myclassroom.DocRecycler.DocAdapter;
-import com.example.hatim.myclassroom.DocRecycler.DocFragmentAdapter;
-import com.example.hatim.myclassroom.DocRecycler.Document;
-import com.example.hatim.myclassroom.DocRecycler.DocumentItemDB;
-import com.example.hatim.myclassroom.DocRecycler.ManageDocuments;
+import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
+import com.example.hatim.myclassroom.DocumentChoosing.DocumentPickActivity;
+import com.example.hatim.myclassroom.DocumentHelper.Document;
+import com.example.hatim.myclassroom.DocumentHelper.ManageDocuments;
 import com.example.hatim.myclassroom.R;
-import com.example.hatim.myclassroom.Tab.ContactTab.ContactTable;
+import com.example.hatim.myclassroom.Tab.ContactTab.ContactAddActivity;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class DocumentsFragment extends Fragment {
 
@@ -37,12 +34,10 @@ public class DocumentsFragment extends Fragment {
     DocFragmentAdapter docFragmentAdapter;
     private MultiSelector mMultiSelector = new MultiSelector();
     private ArrayList<Document> documentList = new ArrayList<>();
+    FloatingActionButton floatingActionButton;
 
     public DataBaseHelper dataBaseHelper = null;
-    private Dao<DocumentItemDB, Integer> documentItemDBs;
-
-
-
+    ManageDocuments manageDocuments = new ManageDocuments(getContext());
 
     private ModalMultiSelectorCallback mDeleteMode = new ModalMultiSelectorCallback(mMultiSelector) {
 
@@ -57,7 +52,16 @@ public class DocumentsFragment extends Fragment {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        try {
+            documentList = manageDocuments.retrieveDatabaseList(getHelper().getDocumentDao());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -70,27 +74,23 @@ public class DocumentsFragment extends Fragment {
         docRecyclerView.setLayoutManager(aLayoutManager);
         docRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        floatingActionButton = (FloatingActionButton) inflatedDoc.findViewById(R.id.add_new_doc);
+
         docFragmentAdapter = new DocFragmentAdapter(documentList,mMultiSelector);
         docRecyclerView.setAdapter(docFragmentAdapter);
 
-        ManageDocuments manageDocuments = new ManageDocuments(container.getContext());
 
-        try {
-            documentItemDBs = getHelper().getDocumentDao();
-            List<DocumentItemDB> documentInDB = documentItemDBs.queryForAll();
-
-            if (!documentInDB.isEmpty()){
-                documentList = manageDocuments.retrieveDatabaseList(documentInDB);
-                docFragmentAdapter.notifyDataSetChanged();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DocumentPickActivity.class);
+                getActivity().startActivity(intent);
             }
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        });
 
         return inflatedDoc;
     }
+
 
 
     private DataBaseHelper getHelper() {

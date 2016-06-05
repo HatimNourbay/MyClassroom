@@ -1,10 +1,12 @@
-package com.example.hatim.myclassroom.DocRecycler;
+package com.example.hatim.myclassroom.Tab.DocTab;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bignerdranch.android.multiselector.MultiSelector;
+import com.example.hatim.myclassroom.DocumentChoosing.DocAdapter;
+import com.example.hatim.myclassroom.DocumentHelper.Document;
 import com.example.hatim.myclassroom.R;
 
 import java.util.ArrayList;

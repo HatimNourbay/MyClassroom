@@ -1,24 +1,23 @@
-package com.example.hatim.myclassroom.DocRecycler;
+package com.example.hatim.myclassroom.DocumentHelper;
 
 import android.content.Context;
 
-import com.example.hatim.myclassroom.DataBaseHelper;
+import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Hatim on 04/06/2016.
- */
+
 public class ManageDocuments {
 
     private DataBaseHelper databaseHelper = null;
 
     Context context;
+
+    private Dao<DocumentItemDB, Integer> documentItemDBs;
 
     public ManageDocuments(Context usedContext){
         this.context = usedContext;
@@ -39,19 +38,30 @@ public class ManageDocuments {
         }
     }
 
-    public ArrayList<Document> retrieveDatabaseList(List<DocumentItemDB> docDB){
+    public ArrayList<Document> retrieveDatabaseList(Dao<DocumentItemDB, Integer> DocDao){
 
+
+        documentItemDBs = DocDao;
         ArrayList<Document> retrievedDocuments = new ArrayList<>();
+        try {
+            List<DocumentItemDB> documentInDB = documentItemDBs.queryForAll();
 
-        for (DocumentItemDB docDb: docDB) {
+            if (!documentInDB.isEmpty()){
+                for (DocumentItemDB docDb: documentInDB) {
 
-            Document docToAdd = new Document();
-            docToAdd.nameDoc = docDb.nameDoc;
-            docToAdd.filePath = docDb.pathDoc;
-            docToAdd.imageDoc = docDb.photoType;
+                    Document docToAdd = new Document();
+                    docToAdd.nameDoc = docDb.nameDoc;
+                    docToAdd.filePath = docDb.pathDoc;
+                    docToAdd.imageDoc = docDb.photoType;
 
-            retrievedDocuments.add(docToAdd);
+                    retrievedDocuments.add(docToAdd);
 
+                }
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return retrievedDocuments;
     }

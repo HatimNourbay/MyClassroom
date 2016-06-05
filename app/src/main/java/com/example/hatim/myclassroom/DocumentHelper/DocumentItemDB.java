@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom.DocRecycler;
+package com.example.hatim.myclassroom.DocumentHelper;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

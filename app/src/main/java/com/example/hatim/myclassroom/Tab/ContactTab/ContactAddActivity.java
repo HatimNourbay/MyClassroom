@@ -1,7 +1,6 @@
 package com.example.hatim.myclassroom.Tab.ContactTab;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.hatim.myclassroom.DataBaseHelper;
+import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
 import com.example.hatim.myclassroom.R;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;

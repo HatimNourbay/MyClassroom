@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom.DocRecycler;
+package com.example.hatim.myclassroom.DocumentHelper;
 
 /**
  * Created by Hatim on 01/06/2016.

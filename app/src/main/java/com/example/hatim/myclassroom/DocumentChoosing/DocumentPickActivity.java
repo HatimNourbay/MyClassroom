@@ -1,4 +1,4 @@
-package com.example.hatim.myclassroom.DocRecycler;
+package com.example.hatim.myclassroom.DocumentChoosing;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,12 +10,16 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
+import com.example.hatim.myclassroom.DocumentHelper.Document;
+import com.example.hatim.myclassroom.DocumentHelper.ManageDocuments;
+import com.example.hatim.myclassroom.DocumentHelper.SearchDocuments;
 import com.example.hatim.myclassroom.MainActivity;
 import com.example.hatim.myclassroom.R;
 
@@ -39,6 +43,7 @@ public class DocumentPickActivity extends AppCompatActivity {
     private RecyclerView docRecyclerView;
     private DocAdapter docAdapter;
     private ArrayList<Document> documentList = new ArrayList<>();
+    Toolbar toolbar;
 
     private ProgressDialog progressSearch;
     SharedPreferences myClassPrefs;
@@ -56,7 +61,25 @@ public class DocumentPickActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        myClassPrefs = getSharedPreferences(getString(R.string.prefs_name),MODE_PRIVATE);
+
+        if (myClassPrefs.getBoolean(getString(R.string.first_connection),true) == false){
+            Intent loginStart = new Intent(this, MainActivity.class);
+            startActivity(loginStart);
+            finish();
+        }
+
         setContentView(R.layout.activity_document_pick);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_pick);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setLogo(R.drawable.myclassroomlogo_small);
+
+
         searchDocuments = new SearchDocuments(Environment.getExternalStorageDirectory());
 
         docRecyclerView = (RecyclerView) findViewById(R.id.DocRecycler);
@@ -115,6 +138,14 @@ public class DocumentPickActivity extends AppCompatActivity {
                                     if(f.getName().toLowerCase().endsWith(".pdf")){
                                         Document docToAdd = new Document();
                                         docToAdd.imageDoc = R.drawable.pdf_file;
+                                        docToAdd.nameDoc = f.getName();
+                                        docToAdd.filePath = f.getAbsolutePath();
+                                        documentList.add(docToAdd);
+                                        docAdapter.notifyDataSetChanged();
+                                    }
+                                    else if(f.getName().toLowerCase().endsWith(".doc") | f.getName().toLowerCase().endsWith(".docx")){
+                                        Document docToAdd = new Document();
+                                        docToAdd.imageDoc = R.drawable.doc_file;
                                         docToAdd.nameDoc = f.getName();
                                         docToAdd.filePath = f.getAbsolutePath();
                                         documentList.add(docToAdd);

@@ -63,8 +63,6 @@ public class FragmentInsideDrawer extends Fragment {
     public static List<DrawerItem> getData() {
         List<DrawerItem> data = new ArrayList<>();
         imagesIcon = new int[]{
-                R.drawable.friendssmall,
-                R.drawable.settings,
                 R.drawable.warningsmall,
                 R.drawable.locksmall
         };

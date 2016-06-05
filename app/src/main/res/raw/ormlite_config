@@ -23,7 +23,7 @@ columnName=contact_nom
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.hatim.myclassroom.DocRecycler.DocumentItemDB
+dataClass=com.example.hatim.myclassroom.DocumentHelper.DocumentItemDB
 tableName=doc_table
 # --table-fields-start--
 # --field-start--

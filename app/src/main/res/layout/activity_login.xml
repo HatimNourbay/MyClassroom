@@ -1,59 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Log.LoginActivity"
     android:orientation="vertical"
-    android:weightSum="12">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    android:weightSum="12"
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="6"
         android:src="@drawable/myclassroomlogo"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:inputType="textEmailAddress"
-        android:gravity="center"
-        android:hint="Adresse Mail"
-         />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:inputType="textPassword"
-        android:gravity="center"
-        android:hint="Mot de Passe"/>
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"/>
+        android:layout_weight="1"/>
     
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"/>
+        android:layout_weight="2"
+        android:layout_margin="5dp"/>
 
     <Button
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="2"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="-5dp"
         android:layout_gravity="bottom"
+        android:background="@color/colorAccent"
+        android:text="@string/button_pick"
+        android:textColor="@color/white"
+        android:clickable="true"
         />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 
 </LinearLayout>

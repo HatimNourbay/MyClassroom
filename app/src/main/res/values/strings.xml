@@ -14,12 +14,12 @@
     <string name="loading">Connexion…</string>
     <string name="searching">Nous cherchons les documents sur votre téléphone…</string>
 
+    <string name="button_sign_no_google">Entrer sans connexion</string>
+    <string name="button_pick">Choisissez vos fichiers</string>
 
     <string name="action_settings">Settings</string>
 
     <string-array name="nav_drawer_labels">
-        <item>@string/friends_title</item>
-        <item>@string/parameters_title</item>
         <item>@string/about_title</item>
         <item>@string/logout_title</item>
     </string-array>

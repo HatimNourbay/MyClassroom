@@ -1,7 +1,6 @@
-package com.example.hatim.myclassroom.DocRecycler;
+package com.example.hatim.myclassroom.DocumentChoosing;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
@@ -9,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.StateSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +16,7 @@ import android.widget.TextView;
 
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.bignerdranch.android.multiselector.SwappingHolder;
+import com.example.hatim.myclassroom.DocumentHelper.Document;
 import com.example.hatim.myclassroom.R;
 
 import java.util.ArrayList;

@@ -1,17 +1,13 @@
-package com.example.hatim.myclassroom.DocRecycler;
+package com.example.hatim.myclassroom.DocumentHelper;
 
-import android.os.AsyncTask;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import rx.subjects.PublishSubject;
 
-/**
- * Created by Hatim on 29/05/2016.
- */
+
 public class SearchDocuments{
 
 
@@ -33,7 +29,6 @@ public class SearchDocuments{
         for (File file : fList) {
             if (file.isFile()) {
                 if(file.getName().toLowerCase().endsWith(".pdf")){
-                    //docPushed.onNext(file.getName());
                 }
             } else if (file.isDirectory()) {
 

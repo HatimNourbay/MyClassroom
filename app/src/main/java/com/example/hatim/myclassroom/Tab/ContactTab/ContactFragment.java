@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.hatim.myclassroom.DataBaseHelper;
+import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
 import com.example.hatim.myclassroom.R;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -33,6 +32,11 @@ public class ContactFragment extends Fragment {
     public DataBaseHelper dataBaseHelper = null;
     private Dao<ContactTable, Integer> contactDao;
     ContactAdapter contactAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
