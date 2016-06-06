@@ -38,11 +38,11 @@ import rx.schedulers.Schedulers;
 public class DocumentPickActivity extends AppCompatActivity {
 
     private Subscription docSubsript;
-    private SearchDocuments searchDocuments;
-    private MultiSelector mMultiSelector = new MultiSelector();
-    private RecyclerView docRecyclerView;
-    private DocAdapter docAdapter;
-    private ArrayList<Document> documentList = new ArrayList<>();
+    public SearchDocuments searchDocuments;
+    public MultiSelector mMultiSelector = new MultiSelector();
+    public RecyclerView docRecyclerView;
+    public DocAdapter docAdapter;
+    public ArrayList<Document> documentList = new ArrayList<>();
     Toolbar toolbar;
 
     private ProgressDialog progressSearch;
@@ -109,7 +109,7 @@ public class DocumentPickActivity extends AppCompatActivity {
     }
 
 
-    private void createObservable() {
+    public void createObservable() {
         Observable<List<File>> listObservable = Observable.fromCallable(new Callable<List<File>>() {
             @Override
             public List<File> call() throws Exception {
@@ -157,7 +157,7 @@ public class DocumentPickActivity extends AppCompatActivity {
     }
 
 
-    private void showProgressDialog() {
+    public void showProgressDialog() {
         if (progressSearch == null) {
             progressSearch = new ProgressDialog(this);
             progressSearch.setMessage(getString(R.string.searching));
@@ -167,7 +167,7 @@ public class DocumentPickActivity extends AppCompatActivity {
         progressSearch.show();
     }
 
-    private void hideProgressDialog() {
+    public void hideProgressDialog() {
         if (progressSearch != null && progressSearch.isShowing()) {
             progressSearch.hide();
         }

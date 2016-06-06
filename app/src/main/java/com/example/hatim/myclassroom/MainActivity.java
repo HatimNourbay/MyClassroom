@@ -113,11 +113,11 @@ public class MainActivity extends BaseLogin implements FragmentInsideDrawer.Frag
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
         if (fragmentList != null) {
-            //TODO: Perform your logic to pass back press here
             for(Fragment fragment : fragmentList){
-                if(fragment instanceof OnBackPressedListener){
+                if(fragment instanceof DocumentsFragment){
                     ((OnBackPressedListener)fragment).onBackPressed();
                 }
             }

@@ -2,6 +2,7 @@ package com.example.hatim.myclassroom.Tab.DocTab;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback;
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.example.hatim.myclassroom.DatabaseParams.DataBaseHelper;
 import com.example.hatim.myclassroom.DocumentChoosing.DocAdapter;
+import com.example.hatim.myclassroom.DocumentChoosing.DocPickAdding;
 import com.example.hatim.myclassroom.DocumentChoosing.DocumentPickActivity;
 import com.example.hatim.myclassroom.DocumentHelper.Document;
 import com.example.hatim.myclassroom.DocumentHelper.ManageDocuments;
@@ -47,6 +49,7 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
     private MultiSelector mMultiSelector = new MultiSelector();
     private ArrayList<Document> documentList = new ArrayList<>();
     FloatingActionButton floatingActionButton;
+    SharedPreferences myClassPrefs;
     Button deleteButton;
     Button shareButton;
 
@@ -105,8 +108,15 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), DocumentPickActivity.class);
-                getActivity().startActivity(intent);
+
+                myClassPrefs = v.getContext().getSharedPreferences(getString(R.string.prefs_name),v.getContext().MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = myClassPrefs.edit();
+                editor.putBoolean(getString(R.string.first_connection),true);
+                editor.commit();
+
+                Intent i = new Intent(v.getContext(),DocPickAdding.class);
+                startActivityForResult(i, 203);
             }
         });
 
@@ -170,6 +180,21 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 203){
+            try {
+                documentList = manageDocuments.retrieveDatabaseList(getHelper().getDocumentDao());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            docFragmentAdapter.notifyDataSetChanged();
+        }
+    }
+
     private boolean isPanelShown() {
         return hiddenPanel.getVisibility() == View.VISIBLE;
     }
@@ -195,12 +220,16 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
 
     @Override
     public void onBackPressed() {
+
         if (isPanelShown()){
             slideUpDown(hiddenPanel);
+            mMultiSelector.clearSelections();
         }
-        mMultiSelector.clearSelections();
-    }
+        else{
+            getActivity().finish();
+        }
 
+    }
 
     public class DocFragmentAdapter extends DocAdapter {
 

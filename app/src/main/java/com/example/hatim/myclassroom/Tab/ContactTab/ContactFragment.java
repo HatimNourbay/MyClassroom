@@ -53,8 +53,6 @@ public class ContactFragment extends Fragment{
         try {
 
             contactDao =  getHelper().getContactDao();
-
-
             contactTable = contactDao.queryForAll();
 
 
@@ -66,15 +64,6 @@ public class ContactFragment extends Fragment{
 
             contactAdapter = new ContactAdapter(contactTable);
             contactListV.setAdapter( contactAdapter);
-
-            // If, no record found in the database, appropriate message needs to be displayed.
-            /*if(contactTable.size() == 0)
-            {
-                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-                alertDialogBuilder.setMessage("Pas de contact");
-                final AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }*/
 
 
         } catch (SQLException e) {
@@ -92,7 +81,7 @@ public class ContactFragment extends Fragment{
 
 
                 Intent intent = new Intent(getContext(), ContactAddActivity.class);
-                getActivity().startActivityForResult(intent,1);
+                getActivity().startActivityForResult(intent,45);
             }
         });
 
@@ -109,7 +98,7 @@ public class ContactFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1){
+        if (requestCode == 45){
             try {
                 contactTable = contactDao.queryForAll();
             } catch (SQLException e) {

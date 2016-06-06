@@ -113,7 +113,7 @@ public class ContactAddActivity extends AppCompatActivity {
                             .transform(new CircleTransform())
                             .into(contactPreviewPhoto);
 
-                contactTable.photo = imgDecodableString;
+                contactTable.photo = selectedImage.toString();
                 // -> à rajouter qd modifications effectuée dans ContactTable: c a d int en String + modification du nom: photo photoPath
                 // il faudra que tu ajoutes le chemin dans picasso (qui est dans l'adapter) -> pour que ça mette l'image
 
@@ -178,8 +178,6 @@ public class ContactAddActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        //rien faire -> pour à nouveau remplir le champs
-                        // ou bien mettre finish(), mais dans ce cas va supprimer l'ajout du new contact
                     }
                 });
 
@@ -189,8 +187,8 @@ public class ContactAddActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Intent negativeActivity = new Intent(getApplicationContext(),ContactFragment.class);
-                        //startActivity(negativeActivity);
+                        Intent backIntent = new Intent();
+                        setResult(45, backIntent);
                         finish();
                     }
                 });
