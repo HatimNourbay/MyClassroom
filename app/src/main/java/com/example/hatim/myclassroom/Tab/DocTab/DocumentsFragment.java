@@ -52,6 +52,7 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
     SharedPreferences myClassPrefs;
     Button deleteButton;
     Button shareButton;
+    Integer pressed = 0;
 
     private View hiddenPanel;
 
@@ -220,13 +221,16 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
 
     @Override
     public void onBackPressed() {
-
+        pressed++;
         if (isPanelShown()){
             slideUpDown(hiddenPanel);
             mMultiSelector.clearSelections();
         }
         else{
-            getActivity().finish();
+            if (pressed == 2){
+                getActivity().finish();
+                pressed = 0;
+            }
         }
 
     }
