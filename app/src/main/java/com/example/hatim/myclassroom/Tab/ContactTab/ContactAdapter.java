@@ -59,10 +59,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                     .load(R.drawable.ic_account_circle_white_48dp)
                     .into(holder.photo);
         }
-
-        Picasso.with(holder.photo.getContext())
-                .load(R.drawable.ic_account_circle_white_48dp)
-                .into(holder.photo);
         holder.prenom.setText(contact.prenom);
         holder.nom.setText(contact.nom);
     }

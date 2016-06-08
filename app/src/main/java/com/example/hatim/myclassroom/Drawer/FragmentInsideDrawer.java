@@ -106,11 +106,6 @@ public class FragmentInsideDrawer extends Fragment {
                 drawerListener.onDrawerItemSelected(view, position);
                 mDrawerLayout.closeDrawer(containerView);
             }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
         }));
 
         return layout;
@@ -158,7 +153,6 @@ public class FragmentInsideDrawer extends Fragment {
     public static interface ClickListener {
         public void onClick(View view, int position);
 
-        public void onLongClick(View view, int position);
     }
 
     static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
@@ -173,14 +167,6 @@ public class FragmentInsideDrawer extends Fragment {
                 public boolean onSingleTapUp(MotionEvent e) {
                     return true;
                 }
-
-                @Override
-                public void onLongPress(MotionEvent e) {
-                    View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-                    if (child != null && clickListener != null) {
-                        clickListener.onLongClick(child, recyclerView.getChildPosition(child));
-                    }
-                }
             });
         }
 
@@ -189,7 +175,7 @@ public class FragmentInsideDrawer extends Fragment {
 
             View child = rv.findChildViewUnder(e.getX(), e.getY());
             if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
-                clickListener.onClick(child, rv.getChildPosition(child));
+                clickListener.onClick(child, rv.getChildAdapterPosition(child));
             }
             return false;
         }

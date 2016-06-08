@@ -29,7 +29,7 @@ public class ManageDocuments {
         for (Document doc : DocToPersist) {
             DocumentItemDB documentItemDB = new DocumentItemDB();
 
-            documentItemDB.id = doc.id;
+            //documentItemDB.id = doc.id;
             documentItemDB.nameDoc = doc.nameDoc;
             documentItemDB.photoType = doc.imageDoc;
             documentItemDB.pathDoc = doc.filePath;
@@ -72,13 +72,18 @@ public class ManageDocuments {
     public List <DocumentItemDB> deleteDocuments(List<Document> documentDeleted) throws SQLException {
 
         Dao<DocumentItemDB,Integer> documentDao = getHelper().getDocumentDao();
-        List<DocumentItemDB> docDB = null;
+        List<DocumentItemDB> docDB = new ArrayList<>();
 
 
-        QueryBuilder<DocumentItemDB, Integer> queryBuilder = documentDao.queryBuilder();
+        //QueryBuilder<DocumentItemDB, Integer> queryBuilder = documentDao.queryBuilder();
         for (Document doc : documentDeleted) {
-            DocumentItemDB accountList = documentDao.queryForId(doc.id);
-            docDB.add(accountList);
+            List<DocumentItemDB> docList =
+                    documentDao.queryBuilder().where()
+                            .eq("doc_id", doc.id)
+                            .query();
+            docDB.add(docList.get(0));
+            documentDao.delete(docList.get(0));
+
         }
 
         return docDB;

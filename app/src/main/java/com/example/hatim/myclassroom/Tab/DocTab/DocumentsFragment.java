@@ -36,6 +36,8 @@ import com.example.hatim.myclassroom.Tab.ContactTab.ContactAddActivity;
 import com.example.hatim.myclassroom.Tab.OnBackPressedListener;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
+import org.w3c.dom.DocumentFragment;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,7 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
     Integer pressed = 0;
 
     private View hiddenPanel;
+    SlidingHelper slideHelper;
 
     public DataBaseHelper dataBaseHelper = null;
     ManageDocuments manageDocuments = new ManageDocuments(getContext());
@@ -100,9 +103,13 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
 
         hiddenPanel = inflatedDoc.findViewById(R.id.hidden_panel);
 
+        slideHelper = new SlidingHelper(hiddenPanel);
+
         floatingActionButton = (FloatingActionButton) inflatedDoc.findViewById(R.id.add_new_doc);
 
         docFragmentAdapter = new DocFragmentAdapter(documentList,mMultiSelector);
+        docFragmentAdapter.slideHelper = this.slideHelper;
+
         docRecyclerView.setAdapter(docFragmentAdapter);
 
 
@@ -152,6 +159,9 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
                 if (!docDelete.isEmpty()){
                     try {
                         manageDocuments.deleteDocuments(docDelete);
+                        documentList = manageDocuments.retrieveDatabaseList(getHelper().getDocumentDao());
+                        docFragmentAdapter.notifyDataSetChanged();
+
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -160,25 +170,6 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
         });
 
         return inflatedDoc;
-    }
-
-    public void slideUpDown(final View view) {
-        if (!isPanelShown()) {
-            // Show the panel
-            Animation bottomUp = AnimationUtils.loadAnimation(view.getContext(),
-                    R.anim.slide_up);
-
-            hiddenPanel.startAnimation(bottomUp);
-            hiddenPanel.setVisibility(View.VISIBLE);
-        }
-        else {
-            // Hide the Panel
-            Animation bottomDown = AnimationUtils.loadAnimation(view.getContext(),
-                    R.anim.slide_down);
-
-            hiddenPanel.startAnimation(bottomDown);
-            hiddenPanel.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -194,10 +185,6 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
 
             docFragmentAdapter.notifyDataSetChanged();
         }
-    }
-
-    private boolean isPanelShown() {
-        return hiddenPanel.getVisibility() == View.VISIBLE;
     }
 
 
@@ -222,8 +209,8 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
     @Override
     public void onBackPressed() {
         pressed++;
-        if (isPanelShown()){
-            slideUpDown(hiddenPanel);
+        if (slideHelper.isPanelShown()){
+            slideHelper.slideUpDown(hiddenPanel);
             mMultiSelector.clearSelections();
         }
         else{
@@ -232,52 +219,6 @@ public class DocumentsFragment extends Fragment implements OnBackPressedListener
                 pressed = 0;
             }
         }
-
-    }
-
-    public class DocFragmentAdapter extends DocAdapter {
-
-        private MultiSelector mMultiSelector;
-
-        public DocFragmentAdapter(ArrayList<Document> oncomingDocs, MultiSelector multiselectFrag) {
-            super(oncomingDocs, multiselectFrag);
-
-            mMultiSelector = multiselectFrag;
-        }
-
-        @Override
-        public DoclHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.document_layout, parent, false);
-
-            return new DoclHolder(itemView,mMultiSelector);
-        }
-
-        public class DoclHolder extends DocAdapter.DocHolder{
-
-            public DoclHolder(View itemView, MultiSelector multiSelector) {
-                super(itemView, multiSelector);
-            }
-
-
-            @Override
-            public void onClick(View v) {
-            }
-
-            @Override
-            public boolean onLongClick(View v) {
-
-                //((AppCompatActivity) getActivity()).startSupportActionMode(mDeleteMode);
-
-                if (!isPanelShown()){
-                    slideUpDown(hiddenPanel);
-                }
-                mMultiSelector.setSelected(this,true);
-                return true;
-            }
-        }
-
-
 
     }
 
